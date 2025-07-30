@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Course Reflection</title>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="es">ES</button>
+            </div>
+            <h1 class="title" data-i18n="title">Course Reflection</h1>
+            <p class="welcome" data-i18n="welcome">Share your thoughts and experiences about this course</p>
+        </div>
+
+        <div class="content fade-in">
+            <div class="question-section">
+                <h3 class="question" data-i18n="question1">What did you enjoy most about the course?</h3>
+                <textarea class="answer-area" data-i18n-placeholder="placeholder1" placeholder="Share what you found most engaging or interesting..."></textarea>
+            </div>
+
+            <div class="question-section">
+                <h3 class="question" data-i18n="question2">What was the most challenging part of the course?</h3>
+                <textarea class="answer-area" data-i18n-placeholder="placeholder2" placeholder="Describe any difficulties you encountered and how you overcame them..."></textarea>
+            </div>
+
+            <div class="question-section">
+                <h3 class="question" data-i18n="question3">What suggestions do you have for improving the course?</h3>
+                <textarea class="answer-area" data-i18n-placeholder="placeholder3" placeholder="Share your ideas for making this course even better..."></textarea>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p data-i18n="footer">Thank you for your valuable feedback! Your reflections help us improve the learning experience.</p>
+        </div>
+    </div>
+
+    <div class="language-indicator">
+        <span data-i18n="currentLang">Current Language:</span> <span id="current-lang-display">English</span>
+    </div>
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
