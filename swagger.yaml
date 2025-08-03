@@ -1,0 +1,193 @@
+openapi: 3.0.3
+info:
+  title: Course Management Platform API
+  description: API documentation for managing courses, users, facilitator activities, and student reflections with localization support.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api
+    description: Local development server
+
+tags:
+  - name: Auth
+    description: Authentication and user management
+  - name: Courses
+    description: Course allocation system
+  - name: Facilitator Activity
+    description: Facilitator activity tracker
+  - name: Reflections
+    description: Student reflections with i18n
+
+paths:
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created successfully
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Login and get a JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login successful, returns JWT
+
+  /courses:
+    get:
+      tags: [Courses]
+      summary: Get all courses
+      responses:
+        '200':
+          description: A list of courses
+
+    post:
+      tags: [Courses]
+      summary: Create a new course
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+      responses:
+        '201':
+          description: Course created successfully
+
+  /courses/{id}/allocate:
+    post:
+      tags: [Courses]
+      summary: Allocate a course to a class or facilitator
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                facilitatorId:
+                  type: integer
+                classId:
+                  type: integer
+      responses:
+        '200':
+          description: Course allocated successfully
+
+  /activities:
+    get:
+      tags: [Facilitator Activity]
+      summary: Get facilitator activity logs
+      responses:
+        '200':
+          description: List of facilitator activities
+
+    post:
+      tags: [Facilitator Activity]
+      summary: Log a facilitator activity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Activity'
+      responses:
+        '201':
+          description: Activity logged
+
+  /reflections:
+    get:
+      tags: [Reflections]
+      summary: Get student reflections (localized)
+      parameters:
+        - name: lang
+          in: query
+          schema:
+            type: string
+            enum: [en, fr, rw]
+      responses:
+        '200':
+          description: Reflections in the requested language
+
+    post:
+      tags: [Reflections]
+      summary: Submit a reflection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reflection'
+      responses:
+        '201':
+          description: Reflection submitted
+
+components:
+  schemas:
+    User:
+      type: object
+      required: [username, email, password, role]
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+          enum: [student, facilitator, manager]
+
+    Course:
+      type: object
+      required: [title, code]
+      properties:
+        title:
+          type: string
+        code:
+          type: string
+        description:
+          type: string
+
+    Activity:
+      type: object
+      required: [facilitatorId, action]
+      properties:
+        facilitatorId:
+          type: integer
+        action:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    Reflection:
+      type: object
+      required: [studentId, content, language]
+      properties:
+        studentId:
+          type: integer
+        content:
+          type: string
+        language:
+          type: string
+          enum: [en, fr, rw]
