@@ -27,7 +27,7 @@ A backend system designed for academic institutions to support faculty operation
 
 ---
 
-## 📖Project Overview
+## Project Overview
 
 This platform manages user roles (Admin, Manager, Facilitator, Student), courses, allocations, and internationalized student reflection entries. It enforces secure access, uses background processing for notifications (via Redis), and supports scalable internationalization features.
 
@@ -64,11 +64,7 @@ This platform manages user roles (Admin, Manager, Facilitator, Student), courses
 
 ---
 
-##  System Architecture
-
----
-
-## 📚 Modules
+## Modules
 
 ### 1. Course Allocation System
 
@@ -91,7 +87,7 @@ This platform manages user roles (Admin, Manager, Facilitator, Student), courses
 
 ---
 
-## 🔐 Authentication & Authorization
+##  Authentication & Authorization
 
 - **Login/Register** via JWT
 - Roles:
@@ -103,7 +99,7 @@ This platform manages user roles (Admin, Manager, Facilitator, Student), courses
 
 ---
 
-## 📘 API Documentation
+##  API Documentation
 
 - Swagger docs available at `/api-docs`
 - Each endpoint includes:
@@ -157,19 +153,27 @@ npm test
 ## Project Structure
 
 ├── src/
-│   ├── config/              # Sequelize & Redis config
-│   ├── controllers/         # Request handlers
-│   ├── models/              # Sequelize models
-│   ├── routes/              # API routes
-│   ├── middlewares/         # Auth, validators
-│   ├── services/            # Business logic
-│   ├── jobs/                # Redis tasks
-│   └── locales/             # i18n translations
-│
-├── tests/                   # Unit tests
-├── swagger/                 # Swagger API docs
-├── .env                     # Environment variables
-├── app.js                   # Express app entry point
+
+│   ├── config/  
+
+│   ├── controllers/  
+
+│   ├── models/      
+
+│   ├── routes/      
+
+│   ├── middlewares/     
+
+│   ├── services/        
+
+├── tests/     
+
+├── swagger/     
+
+├── .env          
+
+├── app.js              
+
 └── README.md
 
 
